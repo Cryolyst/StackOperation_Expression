@@ -16,8 +16,14 @@ public class InfixToPostfix {
 		for (int j = 0; j < infix.length(); j++) {
 			char c = infix.charAt(j);
 
-			if (c >= '0' && c <= '9') {
+			//For single digit
+			if (Character.isDigit(c)) {
 				post += c;
+			}
+			
+			//For multi digit
+			if (j+1 >= infix.length() || !Character.isDigit(infix.charAt(j))) {
+				post += " ";
 			}
 
 			if ((c == '{') || (c == '(')) {
@@ -47,7 +53,7 @@ public class InfixToPostfix {
 			if (c == '+' || c == '-' || c == '*' || c == '/') {
 				while (!stack.isEmpty() && precedence.get(stack.peek()) >= precedence.get(c)) {
 					char p = stack.pop();
-					post += p;
+					post += p + " "; 
 				}
 				stack.push(c);
 			}

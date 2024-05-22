@@ -21,10 +21,18 @@ public class MyExpressionTest {
 				valid = ee.expressionEvaluation(expression);
 				if (valid) {
 					System.out.println("Infix: " + expression);
-				}else {
-					
+					InfixToPostfix i2p = new InfixToPostfix();
+					String postfix = i2p.infix2postfix(expression);
+					System.out.println("postfix:" + postfix);
+					PostFixEvaluation pe = new PostFixEvaluation();
+					int result = pe.postfixEvaluation(postfix);
+					System.out.println("result:" + result);
+				} else {
+
 				}
 			}
 		}
+
+		input.close();
 	}
 }
