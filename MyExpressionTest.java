@@ -23,20 +23,24 @@ public class MyExpressionTest {
 				System.out.printf("\nBye!");
 				break;
 			} else {
+				// Create a new instance to call the expressionEvaluation function
 				ExpressionEvaluation ee = new ExpressionEvaluation();
 				valid = ee.expressionEvaluation(expression);
-				if (valid) {
+
+				if (valid) { // if the expression is valid this is triggered
 					System.out.println("Infix: " + expression);
-					
+
+					// Create a new instance of InFixToPostfix to calculate the Infix to postfix
 					InfixToPostfix i2p = new InfixToPostfix();
 					String postfix = i2p.infix2postfix(expression);
 					System.out.println("postfix:" + postfix);
-					
+
+					// Create a new instance of PostFixEvaluation to calculate the postfix
 					PostFixEvaluation pe = new PostFixEvaluation();
 					int result = pe.postfixEvaluation(postfix);
 					System.out.println("result:" + result);
-				} else {
-
+				} else { // if the expression if invalid this is triggered
+					System.out.println("Expression is invalid..");
 				}
 			}
 		}
