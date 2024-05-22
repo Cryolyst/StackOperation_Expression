@@ -6,7 +6,6 @@ import java.util.Stack;
 public class ExpressionEvaluation {
 
 	public boolean expressionEvaluation(String statement) {
-
 		Stack<Character> stack = new Stack<>();
 		HashMap<Character, Character> check = new HashMap<>();
 		check.put('(', ')');
