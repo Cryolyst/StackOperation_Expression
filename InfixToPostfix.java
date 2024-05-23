@@ -11,7 +11,7 @@ public class InfixToPostfix {
 
 		String post = "";
 		loadPrecedence();
-		Stack<Character> stack = new Stack<>();
+		Stack<Character> stack = new Stack<>(); //A stack to store the characters of the expression
 
 		for (int j = 0; j < infix.length(); j++) {
 			char c = infix.charAt(j);
@@ -26,31 +26,31 @@ public class InfixToPostfix {
 				post += " ";
 			}
 
-			if ((c == '{') || (c == '(')) {
+			if ((c == '{') || (c == '(')) { 
 				stack.push(c);
 			}
 
 			if (c == '}') {
 
 				char p = ' ';
-				while (stack.peek() != '{') {
+				while (stack.peek() != '{') { // To pop all the characters in the stack until {
 					p = stack.pop();
 					post += p + " ";
 				}
-				p = stack.pop();
+				p = stack.pop(); // Removes the {
 			}
 
 			if (c == ')') {
 
 				char p = ' ';
-				while (stack.peek() != '(') {
+				while (stack.peek() != '(') { // To pop all the characters in the stack until (
 					p = stack.pop();
 					post += p + " ";
 				}
-				p = stack.pop();
+				p = stack.pop(); // Removes the (
 			}
 
-			if (c == '+' || c == '-' || c == '*' || c == '/') {
+			if (c == '+' || c == '-' || c == '*' || c == '/') { // Check for operands and pop it according to the precedence
 				while (!stack.isEmpty() && precedence.get(stack.peek()) >= precedence.get(c)) {
 					char p = stack.pop();
 					post += p + " ";
@@ -65,7 +65,7 @@ public class InfixToPostfix {
 		return post;
 	}
 
-	public static void loadPrecedence() {
+	public static void loadPrecedence() { // A method to prioritize the operands in order
 		precedence.put('+', 1);
 		precedence.put('-', 1);
 		precedence.put('*', 2);

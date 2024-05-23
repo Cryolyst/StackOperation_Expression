@@ -11,13 +11,13 @@ public class PostFixEvaluation {
 		Stack<Integer> stack = new Stack<>();
 		Scanner input = new Scanner(postfix);
 
-		while (input.hasNext()) {
+		while (input.hasNext()) { // Loop until every character in the postfix is over
 			if (input.hasNextInt()) {
 				stack.push(input.nextInt());
 			} else {
 				String token = input.next();
 
-				value2 = stack.pop();
+				value2 = stack.pop(); // The second popped value is the value one to maintain order of the expression
 				value1 = stack.pop();
 
 				if (token.equals("+")) {

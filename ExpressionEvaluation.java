@@ -8,19 +8,21 @@ public class ExpressionEvaluation {
 	public boolean expressionEvaluation(String statement) {
 		Stack<Character> stack = new Stack<>();
 		HashMap<Character, Character> check = new HashMap<>();
+		//HashMap for () and {}
 		check.put('(', ')');
 		check.put('{', '}');
 
 		boolean valid = true;
 
-		for (int j = 0; j < statement.length(); j++) {
+		
+		for (int j = 0; j < statement.length(); j++) { //For loop to loop through every word in the math expression
 			char c = statement.charAt(j);
 
 			if ((c == '{') || (c == '(')) {
 				stack.push(c);
 			}
 
-			if (c == ')') {
+			if (c == ')') { //Check to see if there is a pair of ()
 				if (!stack.isEmpty()) {
 					char PopedChar = stack.pop();
 					if (check.get(PopedChar) != c) {
@@ -35,7 +37,7 @@ public class ExpressionEvaluation {
 				}
 			}
 
-			if (c == '}') {
+			if (c == '}') { //Check to see if there is a pair of {}
 				if (!stack.isEmpty()) {
 					char PopedChar = stack.pop();
 					if (check.get(PopedChar) != c) {
@@ -52,7 +54,7 @@ public class ExpressionEvaluation {
 			}
 		}
 
-		if (!stack.isEmpty()) {
+		if (!stack.isEmpty()) { //To make sure that there are no brackets left in the stack
 			printError(statement, statement.length(), 3);
 			valid = false;
 		}
